@@ -1,0 +1,37 @@
+spring.profiles.active: dev
+
+server.port: 12345
+
+spring:
+  application:
+    name: cms
+  datasource:
+    #driver-class-name: ${ENV_DRIVER_CLASS_NAME}
+    url: ${ENV_DATASOURCE_URL}
+    username: ${ENV_DATASOURCE_SERVICE_USERNAME}
+    password: ${ENV_DATASOURCE_SERVICE_PASSWORD}
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        jdbc.lob.non_contextual_creation: true
+        default_schema: public
+    show-sql: true
+    hibernate:
+      ddl-auto: create
+
+---
+
+spring.profiles: dev
+
+
+ENV_DATASOURCE_URL: jdbc:postgresql://localhost:5432/cms
+ENV_DATASOURCE_SERVICE_USERNAME: postgres
+ENV_DATASOURCE_SERVICE_PASSWORD: postgres
+#ENV_DRIVER_CLASS_NAME: org.postgresql.Driver
+
+
+---
+
+spring.profiles: integration
+
